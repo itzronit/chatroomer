@@ -1,15 +1,7 @@
-import { MongoClient } from "mongodb";
+import { client } from "../../../database";
 
-const uri = "mongodb://localhost:27017";
-const client = new MongoClient(uri);
-client.connect().then(() => {
-  console.log("Connected to MongoDB");
-})
-
-const dbName = "chatroomer-dev";
-const db = client.db(dbName);
+const db = client.db(process.env.MONGO_DATABASE_NAME);
 const collection = db.collection('messages');
-
 
 export async function GET(request: Request) {}
  

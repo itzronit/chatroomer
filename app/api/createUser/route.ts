@@ -1,5 +1,5 @@
 import { connectDB, disconnectDB } from "../../../database";
-import User from "../../../schemas/user";
+import User from "../../../schemas/User";
 import { NextResponse } from "next/server";
 
 connectDB();

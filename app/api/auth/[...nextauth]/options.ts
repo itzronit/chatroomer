@@ -1,12 +1,15 @@
 import type { NextAuthOptions } from "next-auth";
-import GithubProvider from 'next-auth/providers/github'
+import GoogleProvider from 'next-auth/providers/google'
 import CredentialsProvider from "next-auth/providers/credentials";
+import User from "@/schemas/User";
+import { connectDB } from "@/database";
 
 export const options: NextAuthOptions = {
+    
     providers: [
-        GithubProvider({
-            clientId: process.env.GITHUB_ID as string,
-            clientSecret: process.env.GITHUB_SECRET as string
+        GoogleProvider({
+            clientId: process.env.GOOGLE_CLIENT_ID as string,
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET as string
         }),
         CredentialsProvider({
             name: "Credentials",
@@ -21,14 +24,28 @@ export const options: NextAuthOptions = {
                     type: "password",
                     placeholder: "dontuse123"
                 }
-            }, 
+            },
             async authorize(credentials) {
-                const user = {id: "42", name: "Agent", password: "Agent"}
-                if (credentials?.username === user.name && credentials?.password === user.password) {
-                    return user;
-                } else {
+                //start
+
+                connectDB();
+
+                const user = await User.findOne({
+                    username: credentials?.username
+                })
+
+                if (user === null) {
                     return null;
                 }
+
+                const { password } = user;
+
+                if (password === credentials?.password) {
+                    return JSON.stringify(user);
+                } else {
+                    return null
+                }
+                //end
             },
         })
     ]

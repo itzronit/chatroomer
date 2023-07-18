@@ -1,23 +1,11 @@
-<!-- <script>
-    import { signIn, signOut } from "@auth/sveltekit/client"
-    import { page } from "$app/stores"
-  </script>
-  
-  <h1>SvelteKit Auth Example</h1>
-  <p>
-    {#if $page.data.session}
-      {#if $page.data.session.user?.image}
-        <img loading="lazy" src="{$page.data.session.user.image}" alt=""/>
-      {/if}
-      <span class="signedInText">
-        <small>Signed in as</small><br />
-        <strong>{$page.data.session.user?.name ?? "User"}</strong>
-      </span>
-      <button on:click={() => signOut()} class="button">Sign out</button>
-    {:else}
-      <span class="notSignedInText">You are not signed in</span>
-      <button on:click={() => signIn()}>Sign In</button>
-    {/if}
-  </p> -->
+<div class="navbar bg-base-100">
+  <div class="flex-1">
+    <span class="normal-case text-xl ml-4 font-bold">Chat Roomer</span>
+  </div>
+  <div class="flex-none">
+    <ul class="menu menu-horizontal px-1">
+      <li><a href="/auth/signin"><button class="btn btn-accent btn-outline">Sign in</button></a></li>
+    </ul>
+  </div>
+</div>
 
-  

@@ -2,6 +2,7 @@
   import { page } from "$app/stores";
 </script>
 
+<!-- Navigation bar -->
 <div class="navbar bg-base-100">
   <div class="navbar-start">
     <div class="flex-1">
@@ -11,11 +12,11 @@
   {#if $page.data.session}
     <div class="navbar-center">
       <span class="normal-case text-xl">
-        Welcome 
+        Welcome
         <span class="font-bold">{$page.data.session.user?.name}</span>
       </span>
     </div>
-    {:else}
+  {:else}
     <span class="normal-case text-xl">Hi!</span>
   {/if}
   <div class="navbar-end">
@@ -53,8 +54,29 @@
           <span class="badge badge-xs badge-primary indicator-item" />
         </div>
       </button>
-      {:else}
-      <a href="/auth/signin"><button class="btn btn-accent btn-outline">Sign In</button></a>
+    {:else}
+      <a href="/auth/signin">
+        <button class="btn btn-accent btn-outline">Sign In</button></a>
     {/if}
+  </div>
+</div>
+
+<!-- Rest of the Page -->
+<div class="min-h-screen my-[-100px] flex items-center justify-center">
+  <div class="max-w-3xl w-full p-8 rounded-lg shadow-md">
+    <h1 class="text-4xl font-bold mb-8">Welcome to the Chat Roomer!</h1>
+    <p class="text-xl mb-4">
+      Start connecting with friends and family, and stay in touch with our
+      simple and intuitive chat app.
+    </p>
+    <p class="text-xl mb-4">
+      With our app, you can send messages, share media, and stay connected with
+      your loved ones, no matter where they are in the world.
+    </p>
+    <a href="/auth/signin">
+      <button class="btn my-10 btn-accent">
+        Get Started
+      </button>
+    </a>
   </div>
 </div>
